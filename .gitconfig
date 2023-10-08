@@ -1,0 +1,21 @@
+[user]
+    signingkey = ~/.ssh/id_ed25519.pub
+    email = simonr88@gmail.com
+    name = Simon Rainerson
+[init]
+    defaultBranch = main
+[alias]
+    please = push --force-with-lease
+    last = log -1 HEAD
+    unstage = reset HEAD --
+    fixup = !git add ${1:-.} && git commit --amend --no-edit
+    recommit = commit --reuse-message=HEAD@{1}
+    last-files = log -1 --name-status
+[rebase]
+    autoSquash = true
+[pull]
+    rebase = true
+[diff]
+    colorMoved = zebra
+[include]
+    path = ~/.gitconfig-local
