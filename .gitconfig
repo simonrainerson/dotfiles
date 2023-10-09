@@ -19,3 +19,5 @@
     colorMoved = zebra
 [include]
     path = ~/.gitconfig-local
+[push]
+    autoSetupRemote = true
