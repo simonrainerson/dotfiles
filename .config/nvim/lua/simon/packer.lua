@@ -10,7 +10,12 @@ return require('packer').startup(function(use)
 	  requires = { {'nvim-lua/plenary.nvim'} }
   }
   use 'AlexvZyl/nordic.nvim'
-  use('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
+  use {
+      'nvim-treesitter/nvim-treesitter',
+      -- gitcommit became sad so stick with this for a while
+      commit = 'f861bc6148e7bc715f6a09bd34bb1f577b62a248',
+      run = ':TSUpdate',
+  }
   use 'nvim-treesitter/playground'
   use 'theprimeagen/harpoon'
   use 'mbbill/undotree'
@@ -36,6 +41,7 @@ return require('packer').startup(function(use)
   use 'Xuyuanp/nerdtree-git-plugin'
   use 'ryanoasis/vim-devicons'
   use 'xiyaowong/telescope-emoji.nvim'
+  use 'folke/neodev.nvim'
 end)
 
 

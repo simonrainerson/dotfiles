@@ -11,7 +11,7 @@ end)
 
 require('mason').setup({})
 require('mason-lspconfig').setup({
-  ensure_installed = {"lua_ls", "rnix"},
+  ensure_installed = {"lua_ls", "rnix", "jsonls"},
   handlers = {
     lsp_zero.default_setup,
   },
