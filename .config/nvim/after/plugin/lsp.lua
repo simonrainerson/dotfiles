@@ -17,4 +17,4 @@ require('mason-lspconfig').setup({
   },
 })
 
-lsp_zero.setup_servers({'rust_analyzer', 'pylsp', 'lua_ls', 'rnix'})
+lsp_zero.setup_servers({'rust_analyzer', 'ruff_lsp', 'pylsp', 'lua_ls', 'rnix'})

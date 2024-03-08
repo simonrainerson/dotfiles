@@ -12,8 +12,6 @@ return require('packer').startup(function(use)
   use 'AlexvZyl/nordic.nvim'
   use {
       'nvim-treesitter/nvim-treesitter',
-      -- gitcommit became sad so stick with this for a while
-      commit = 'f861bc6148e7bc715f6a09bd34bb1f577b62a248',
       run = ':TSUpdate',
   }
   use 'nvim-treesitter/playground'
