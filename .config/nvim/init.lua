@@ -37,7 +37,7 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
 -- Set to true if you have a Nerd Font installed
-vim.g.have_nerd_font = false
+vim.g.have_nerd_font = true
 
 -- [[ Setting options ]]
 -- See `:help vim.opt`
@@ -85,6 +85,14 @@ vim.opt.timeoutlen = 300
 vim.opt.splitright = true
 vim.opt.splitbelow = true
 
+-- Move lines up and down
+vim.keymap.set('n', '<C-j>', ':m .+1<CR>==')
+vim.keymap.set('n', '<C-k>', ':m .-2<CR>==')
+vim.keymap.set('i', '<C-j>', '<ESC>:m .+1<CR>==gi')
+vim.keymap.set('i', '<C-k>', '<ESC>:m .-2<CR>==gi')
+vim.keymap.set('v', '<C-j>', ":m '>+1<CR>gv=gv")
+vim.keymap.set('v', '<C-k>', ":m '<-2<CR>gv=gv")
+
 -- Sets how neovim will display certain whitespace characters in the editor.
 --  See `:help 'list'`
 --  and `:help 'listchars'`
@@ -131,10 +139,10 @@ vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' }
 --  Use CTRL+<hjkl> to switch between windows
 --
 --  See `:help wincmd` for a list of all window commands
-vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
-vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
-vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
-vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
+vim.keymap.set('n', '<M-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
+vim.keymap.set('n', '<M-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
+vim.keymap.set('n', '<M-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
+vim.keymap.set('n', '<M-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
@@ -312,6 +320,11 @@ require('lazy').setup({
           ['ui-select'] = {
             require('telescope.themes').get_dropdown(),
           },
+          emoji = {
+            action = function(emoji)
+              vim.api.nvim_put({ emoji.value }, 'c', false, true)
+            end,
+          },
         },
       }
 
@@ -320,7 +333,7 @@ require('lazy').setup({
       pcall(require('telescope').load_extension, 'ui-select')
       pcall(require('telescope').load_extension, 'emoji')
       vim.keymap.set('n', '<leader>se', '<cmd>Telescope emoji<cr>', { desc = '[S]earch [E]moji' })
-      vim.keymap.set('i', '<C-ie>', '<cmd>Telescope emoji<cr>', { desc = '[I]nsert [E]moji}' })
+      vim.keymap.set('i', '<C-e>', '<cmd>Telescope emoji<cr>', { desc = '[I]nsert [E]moji}' })
 
       -- See `:help telescope.builtin`
       local builtin = require 'telescope.builtin'
@@ -533,6 +546,7 @@ require('lazy').setup({
       local lspconfig = require 'lspconfig'
       lspconfig.rust_analyzer.setup {}
       lspconfig.ruff_lsp.setup {}
+      lspconfig.pylsp.setup {}
       lspconfig.clangd.setup {}
       lspconfig.elixirls.setup {}
       lspconfig.elmls.setup {}
