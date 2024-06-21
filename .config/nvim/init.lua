@@ -581,13 +581,15 @@ require('lazy').setup({
 
       -- Setup language servers, but let someone else install them
       local lspconfig = require 'lspconfig'
-      lspconfig.rust_analyzer.setup {}
-      lspconfig.ruff_lsp.setup {}
-      lspconfig.pylsp.setup {}
       lspconfig.clangd.setup {}
       lspconfig.elixirls.setup {}
       lspconfig.elmls.setup {}
+      lspconfig.lua_ls.setup {}
+      lspconfig.pylsp.setup {}
+      lspconfig.ruff_lsp.setup {}
+      lspconfig.rust_analyzer.setup {}
       lspconfig.terraform_lsp.setup {}
+      lspconfig.zls.setup {}
 
       -- Ensure the servers and tools above are installed
       --  To check the current status of installed tools and/or manually install
