@@ -586,7 +586,10 @@ require('lazy').setup({
 
       -- Setup language servers, but let someone else install them
       local lspconfig = require 'lspconfig'
-      lspconfig.clangd.setup {}
+      lspconfig.bufls.setup {}
+      lspconfig.clangd.setup {
+        filetypes = { 'c', 'cpp', 'objc', 'objcpp', 'cuda' },
+      }
       lspconfig.elixirls.setup {}
       lspconfig.elmls.setup {}
       lspconfig.lua_ls.setup {}
